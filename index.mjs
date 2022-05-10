@@ -9,7 +9,7 @@ const versionNumber = packageInfo.match(/\d+\.\d+\.\d+/)[0]
 cd(`${process.env.REPO_TO_UPDATE}`)
 
 const { stdout: npmLs } = await $`npm ls ${packageName}`
-const currentVersionNumber = npmLs.match(/\d+\.\d+\.\d+/)[1]
+const currentVersionNumber = npmLs.match(/\d+\.\d+\.\d+/gm)[1]
 if (currentVersionNumber === versionNumber) {
   console.log(`${packageName} is already up to date (${versionNumber})`)
   process.exit(1)
